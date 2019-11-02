@@ -1,4 +1,4 @@
-from flask import jsonify, request, Response, render_template, send_file
+from flask import jsonify, request, Response, render_template, send_file, url_for
 from app import db
 from app.models import Data
 from app.main import bp
@@ -39,9 +39,10 @@ def get_data_date(start, end):
 
 @bp.route('/data/summary')
 def summary():
-    df = pd.read_csv('/home/pi/iot-tutorial/tutorial/app/static/record/dht.csv')
+    #df = pd.read_csv('/home/pi/iot-tutorial/tutorial/app/static/record/dht.csv')
     #df.iloc[-1] = ['Datetime','Temperature','Humidity']
     #df.rename(columns=df.iloc[-1]).drop(df.index[-1])
+    df = pd.read_csv(url_for('static', filename='record/dht.csv'))
     return df.describe().to_html()
 
 @bp.route('/monitor')
@@ -50,7 +51,8 @@ def montior():
 
 @bp.route('/record/dht.csv')
 def records():
-    return send_file('static/record/dht.csv')
+    #return send_file('static/record/dht.csv')
+    return send_file(url_for('static', filename='record/dht.csv'))
 
 @bp.route('/test/<test_str>')
 def test(test_str):

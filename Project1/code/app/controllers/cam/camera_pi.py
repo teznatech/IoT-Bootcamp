@@ -1,7 +1,7 @@
 import io
 import time
 import picamera
-from app.cam.base_camera import BaseCamera
+from app.controllers.cam.base_camera import BaseCamera
 
 
 class Camera(BaseCamera):

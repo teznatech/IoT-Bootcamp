@@ -1,9 +1,9 @@
 from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
-from app.cam.camera_pi import Camera
-from app.cam.pantilt import PanTilt
-from app.lights.light_control import LightControl
+from app.controllers.cam.camera_pi import Camera
+from app.controllers.cam.pantilt import PanTilt
+from app.controllers.lights.light_control import LightControl
 import os
 
 db = SQLAlchemy()
@@ -33,8 +33,8 @@ def create_app(config_class=Config):
     sensor = Sensor(app)
     sensor.read_data() #starts sensor lecture
 
-    os.system('$(which python3) '+ os.path.join(basedir, 'lights', 'effects.py') +' 0.6')
-    os.system('$(which python3) '+ os.path.join(basedir, 'lights', 'lightController.py') +' 0 0 0 0')
+    os.system('$(which python3) '+ os.path.join(basedir, 'controllers', 'lights', 'effects.py') +' 0.6')
+    os.system('$(which python3) '+ os.path.join(basedir, 'controllers', 'lights', 'lightController.py') +' 0 0 0 0')
 
     return app
 

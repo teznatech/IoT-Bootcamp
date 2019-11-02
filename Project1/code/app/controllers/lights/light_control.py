@@ -15,10 +15,10 @@ class LightControl():
         cmd = "sudo python3 " + lightFile + " " +  str(red) + " "\
              + str(green) + " " + str(blue) + " " + str(brightness)
         if int(red) == -1 and int(green) == -1 and int(blue) == -1:
-            lightFile = os.path.join("app", "lights", "rainbow.py")
+            lightFile = os.path.join("app", "controllers", "lights", "rainbow.py")
             cmd = "sudo python3 " + lightFile + " " + str(brightness)
         elif int(red) == -2 and int(green) == -2 and int(blue) == -2:
-            lightFile = os.path.join("app", "lights", "effects.py")
+            lightFile = os.path.join("app", "controllers", "lights", "effects.py")
             cmd = "sudo python3 " + lightFile + " " + str(brightness)
         os.system(cmd)
 
