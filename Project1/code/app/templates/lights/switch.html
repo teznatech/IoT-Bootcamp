@@ -1,0 +1,69 @@
+<html>
+
+    <head>
+    
+    <title>Horus</title>
+    
+    </head>
+    
+    <body bgcolor="#638d91">
+    
+    <center><img src="{{url_for('static', filename='img/saturn.JPG')}}" width="510px" height="320px"> </center>
+    
+    <hr>
+    <center>
+        <input type="color" id="color" name="color" onchange=setURL() value="#ff0000"><br>
+        <button type="button" onclick=changeColor()>Turn On Light</button>
+        <button type="button" onclick=changeColor(1)>Turn Off Light</button>
+    </center>
+    <hr>
+    
+    </body>
+    
+</html>
+
+<script>
+    var url;
+
+    function setURL() {
+        var colorRGB = hexToRgb(document.getElementById('color').value);
+        url = 'http://ctezna.ngrok.io/light/on?red='+colorRGB.r+'&green='+colorRGB.g+'&blue='+colorRGB.b;
+    }
+
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    function changeColor(off) {
+        if (off){
+            post('http://ctezna.ngrok.io/light/off');
+        } else {
+            post(url);
+        }
+    }
+
+    function httpRequest(path, params, method) { //use instead of jquery for small overhead
+        method = method || "get"; // Set method to post by default if not specified.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+        if(params){
+            for(var key in params) {
+                if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+                form.appendChild(hiddenField);
+                }
+            }
+        }
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
