@@ -10,12 +10,12 @@ db = SQLAlchemy()
 camera = Camera()
 pantilt = PanTilt()
 lightControl = LightControl()
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 def create_app(config_class=Config):
     app = Flask(__name__, static_url_path='')
     app.config.from_object(config_class)
     db.init_app(app)
-    basedir = os.path.abspath(os.path.dirname(__file__))
     with app.app_context():
         if not os.path.isfile('../app.db'):
             db.create_all()
