@@ -31,7 +31,7 @@ def create_app(config_class=Config):
 
     from app.sensor import Sensor
     sensor = Sensor(app) #starts sensor lecture also
-    #sensor.read_data() 
+    sensor.read_data() 
 
     return app
 
