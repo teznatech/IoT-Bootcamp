@@ -30,14 +30,12 @@ def create_app(config_class=Config):
     app.register_blueprint(light_bp, url_prefix='/light')
 
     from app.sensor import Sensor
-    sensor = Sensor(app)
-    sensor.read_data() #starts sensor lecture
-
-    os.system('$(which python3) '+ os.path.join(basedir, 'controllers', 'lights', 'effects.py') +' 0.6')
-    os.system('$(which python3) '+ os.path.join(basedir, 'controllers', 'lights', 'lightController.py') +' 0 0 0 0')
+    sensor = Sensor(app) #starts sensor lecture also
+    #sensor.read_data() 
 
     return app
 
-
+os.system('$(which python3) '+ os.path.join(basedir, 'controllers', 'lights', 'effects.py') +' 0.6')
+os.system('$(which python3) '+ os.path.join(basedir, 'controllers', 'lights', 'lightController.py') +' 0 0 0 0')
 
 from app import models
