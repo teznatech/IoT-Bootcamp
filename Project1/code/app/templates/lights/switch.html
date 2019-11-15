@@ -41,9 +41,9 @@
 
     function changeColor(off) {
         if (off){
-            post('http://ctezna.ngrok.io/light/off');
+            httpRequest('http://ctezna.ngrok.io/light/off');
         } else {
-            post(url);
+            httpRequest(url);
         }
     }
 

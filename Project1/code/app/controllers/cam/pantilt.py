@@ -22,13 +22,13 @@ class PanTilt():
     def pan_and_tilt(self, position):
         sleep(1)
         if (position == 0): #default
-            self.move(p=67.5, t=60)
+            self.move(p=67.5, t=45)
 
         elif (position == 1): #left
-            self.move(p=30, t=60)
+            self.move(p=30, t=45)
         
         elif (position == 2): #right
-            self.move(p=97.5, t=60)
+            self.move(p=97.5, t=45)
         
         elif (position == 3): #up
             self.move(p=67.5, t=15)

@@ -17,7 +17,7 @@ class Sensor():
         self.app_context = self.app.app_context()
         self.app_context.push()
         self.basedir = os.path.abspath(os.path.dirname(__file__))
-        self.record_file = os.path.join(self.basedir, 'static', 'dht.csv')
+        self.record_file = os.path.join(self.basedir, 'static', 'record', 'dht.csv')
         self.htmlfile = os.path.join(self.basedir, 'templates', 'main', 'monitor.html')
 
 
