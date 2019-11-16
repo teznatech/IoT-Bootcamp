@@ -17,31 +17,31 @@ def light_on():
     brightness = float(request.args.get('brightness', 0.2))
     lightControl.lightSwitch(red, green, blue, brightness)
     lightstat = '/home/pi/IoT-Bootcamp/Project1/code/app/static/record/light-status.json'
-        with open(lightstat, "r+") as file:
-            file.seek(0)
-            json.dump({'status':True,
-                        'red': red,
-                        'green': green,
-                        'blue': blue,
-                        'brightness': brightness
-                        }, file)
-            file.truncate()
+    with open(lightstat, "r+") as file:
+        file.seek(0)
+        json.dump({'status':True,
+                    'red': red,
+                    'green': green,
+                    'blue': blue,
+                    'brightness': brightness
+                    }, file)
+        file.truncate()
     return '', 204
 
 @bp.route("/off")
 def light_off():
     lightControl.lightSwitch(0,0,0,0)
     lightstat = '/home/pi/IoT-Bootcamp/Project1/code/app/static/record/light-status.json'
-        with open(lightstat, "r+") as file:
-            data = json.load(file)
-            file.seek(0)
-            json.dump({'status': False,
-                        'red': data['red'],
-                        'green': data['green'],
-                        'blue': data['blue'],
-                        'brightness': data['brightness']
-                        }, file)
-            file.truncate()
+    with open(lightstat, "r+") as file:
+        data = json.load(file)
+        file.seek(0)
+        json.dump({'status': False,
+                    'red': data['red'],
+                    'green': data['green'],
+                    'blue': data['blue'],
+                    'brightness': data['brightness']
+                    }, file)
+        file.truncate()
     return '', 204
 
 @bp.route("/status")

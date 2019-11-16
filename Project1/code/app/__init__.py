@@ -33,6 +33,9 @@ def create_app(config_class=Config):
     from app.light_controller import bp as light_bp
     app.register_blueprint(light_bp, url_prefix='/light')
 
+    from app.routine_control import bp as routine_bp
+    app.register_blueprint(routine_bp, url_prefix='/routine')
+
     from app.sensor import Sensor
     sensor = Sensor(app) #starts sensor lecture also
     sensor.read_data()
