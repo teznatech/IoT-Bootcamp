@@ -92,11 +92,11 @@ class RoutineControl():
         for r in routines:
             light_splice = ''
             if len(r.light_splice) > 1:
-                light_splice = light_splice.split(',')
-                red = light_splice[0]
-                green = light_splice[1]
-                blue = light_splice[2]
-                brightness = light_splice[3]
+                light_splice = r.light_splice.split(',')
+                red = int(light_splice[0])
+                green = int(light_splice[1])
+                blue = int(light_splice[2])
+                brightness = float(light_splice[3])
                 light_splice = '#%02x%02x%02x' % (red, green, blue)
             routine = {
                 "id" : r.id,
