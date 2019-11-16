@@ -10,6 +10,10 @@ db = SQLAlchemy()
 camera = Camera()
 pantilt = PanTilt()
 lightControl = LightControl()
+
+from app.routine_control.routine_control import RoutineControl
+routineControl = RoutineControl()
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def create_app(config_class=Config):
@@ -31,7 +35,7 @@ def create_app(config_class=Config):
 
     from app.sensor import Sensor
     sensor = Sensor(app) #starts sensor lecture also
-    sensor.read_data() 
+    sensor.read_data()
 
     return app
 

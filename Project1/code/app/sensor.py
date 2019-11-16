@@ -19,11 +19,11 @@ class Sensor():
         self.basedir = os.path.abspath(os.path.dirname(__file__))
         self.record_file = os.path.join(self.basedir, 'static', 'record', 'dht.csv')
         self.htmlfile = os.path.join(self.basedir, 'templates', 'main', 'monitor.html')
-        #self.thread = threading.Timer(60.0, self.read_data).start()
+        self.thread = threading.Timer(60.0, self.read_data).start()
 
 
     def read_data(self):
-        threading.Timer(60.0, self.read_data).start()
+        #threading.Timer(60.0, self.read_data).start()
         humidity, temperature = Adafruit_DHT.read_retry(self.DHT_SENSOR, self.DHT_PIN)
         if humidity is not None and temperature is not None\
          and humidity < 101 and humidity > 0:

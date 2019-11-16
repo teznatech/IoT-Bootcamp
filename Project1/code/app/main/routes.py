@@ -38,6 +38,7 @@ def get_data_date(start, end):
     return jsonify(data), 200
 
 csv = '/home/pi/IoT-Bootcamp/Project1/code/app/static/record/dht.csv'
+html = '/home/pi/IoT-Bootcamp/Project1/code/app/templates/main/monitor.html'
 
 @bp.route('/data/summary')
 def summary():
@@ -53,8 +54,11 @@ def montior():
 
 @bp.route('/record/dht.csv')
 def records():
-    #return send_file('static/record/dht.csv')
     return send_file(csv)
+
+@bp.route('/getView')
+def getView():
+    return send_file(html)
 
 @bp.route('/test/<test_str>')
 def test(test_str):
