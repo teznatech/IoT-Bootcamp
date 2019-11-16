@@ -67,14 +67,15 @@ class RoutineControl():
 
     def save_routine(self, routineId, task, days, times, light_splice):
         self.new_cron(routineId, task, days, times, light_splice)
-        routine = Routine(id=routineId, task=task, days=days, times=times)
+        routine = Routine(id=routineId, task=task, days=days, times=times, light_splice=light_splice)
         db.session.add(routine)
         db.session.commit()
         task = {
             "id": routine.id,
             "task": routine.task,
             "days": routine.days,
-            "times": routine.times
+            "times": routine.times,
+            "light_splice": routine.light_splice
         }
         return task
 
@@ -89,11 +90,20 @@ class RoutineControl():
         routines = Routine.query.all()
         response = []
         for r in routines:
+            light_splice = ''
+            if len(r.light_splice) > 1:
+                light_splice = light_splice.split(',')
+                red = light_splice[0]
+                green = light_splice[1]
+                blue = light_splice[2]
+                brightness = light_splice[3]
+                light_splice = '#%02x%02x%02x' % (red, green, blue)
             routine = {
                 "id" : r.id,
                 "task": r.task,
                 "days": r.days,
-                "times": r.times
+                "times": r.times,
+                "light_splice": light_splice
             }
             response.append(routine)
         return response

@@ -53,3 +53,4 @@ class Routine(db.Model):
     task = db.Column(db.String(20), nullable=False)
     days = db.Column(db.String(100), nullable=False)
     times = db.Column(db.String(64), nullable=False)
+    light_splice = db.Column(db.String(20), nullable=False)
