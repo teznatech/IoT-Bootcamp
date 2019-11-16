@@ -11,7 +11,7 @@ camera = Camera()
 pantilt = PanTilt()
 lightControl = LightControl()
 
-from app.routine_control.routine_control import RoutineControl
+from app.controllers.routines.routine_control import RoutineControl
 routineControl = RoutineControl()
 
 basedir = os.path.abspath(os.path.dirname(__file__))
