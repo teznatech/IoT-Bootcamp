@@ -1,7 +1,7 @@
 Adafruit_Python_DHT==1.4.0
 adafruit-circuitpython-neopixel==3.4.0
 Click==7.0
-Flask==1.1.1
+Flask==2.2.5
 Flask-SQLAlchemy==2.4.1
 gunicorn==19.9.0
 gpiozero==1.5.0
